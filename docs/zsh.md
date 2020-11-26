@@ -3,6 +3,7 @@
 #### Install zsh if not present
 	$ sudo apt install zsh
 
+#### Install Oh-My-Zsh, themes and autosuggestion plugin
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 cp $HOME/myi3/files/configs/robbyrussell.zsh-theme $HOME/.oh-my-zsh/themes/robbyrussell.zsh-theme
