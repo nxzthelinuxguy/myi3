@@ -11,5 +11,8 @@
 ```
 #### Update $HOME/.zshrc
 ```
+$ vi $HOME/.zshrc
+
+append the following to the plugins:
 plugins=(zsh-autosuggestions)
 ```
