@@ -10,9 +10,7 @@
 	$ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 #### Update $HOME/.zshrc
-```
 $ vi $HOME/.zshrc
 
 #### append the following to the plugins:
 plugins=(zsh-autosuggestions)
-```
