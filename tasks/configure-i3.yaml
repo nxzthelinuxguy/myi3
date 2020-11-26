@@ -1,0 +1,72 @@
+- name: i3 Configuration - Create .i3 directory
+  become_user: "{{ username }}"
+  file:
+    path: "{{ userhome }}/.i3"
+    state: directory
+
+- name: i3 Configuration - Copy "{{ userhome }}/.i3/config"
+  become_user: "{{ username }}"
+  copy:
+    src: "files/i3/config"
+    dest: "{{ userhome }}/.i3/config"
+
+- name: i3 Configuration - Copy "{{ userhome }}/.config/compton.conf"
+  become_user: "{{ username }}"
+  copy:
+    src: "files/config/compton.conf"
+    dest: "{{ userhome }}/.config/compton.conf"
+
+- name: i3 Configuration - Create dunst directory
+  become_user: "{{ username }}"
+  file:
+    path: "{{ userhome }}/.config/dunst"
+    state: directory
+
+- name: i3 Configuration - Copy "{{ userhome }}/.config/dunst/dunstrc"
+  become_user: "{{ username }}"
+  copy:
+    src: "files/config/dunst/dunstrc"
+    dest: "{{ userhome }}/.config/dunst/dunstrc"
+
+- name: i3 Configuration - Create i3blocks directory
+  become_user: "{{ username }}"
+  file:
+    path: "{{ userhome }}/.config/i3blocks"
+    state: directory
+
+- name: i3 Configuration - Copy "{{ userhome }}/.config/i3blocks/config"
+  become_user: "{{ username }}"
+  copy:
+    src: "files/config/i3blocks/config"
+    dest: "{{ userhome }}/.config/i3blocks/config"
+
+- name: i3 Configuration - Create rofi directory
+  become_user: "{{ username }}"
+  file:
+    path: "{{ userhome }}/.config/rofi"
+    state: directory
+
+- name: i3 Configuration - Copy "{{ userhome }}/.config/rofi/config"
+  become_user: "{{ username }}"
+  copy:
+    src: "files/config/rofi/config"
+    dest: "{{ userhome }}/.config/rofi/config"
+
+- name: i3 Configuration - Copy "{{ userhome }}/opt/scripts/myi3blocks" scripts
+  become_user: "{{ username }}"
+  copy:
+    src: files/i3block-scripts/
+    dest: "{{ userhome }}/opt/scripts/myi3blocks/"
+    mode: "0755"
+
+- name: i3 Configuration - Copy i3exit script
+  copy:
+    src: files/i3exit
+    dest: /usr/bin/i3exit
+    mode: '0777'
+
+- name: i3 Configuration - Copy blurlock script
+  copy:
+    src: files/blurlock
+    dest: /usr/bin/blurlock
+    mode: '0777'
