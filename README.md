@@ -10,7 +10,7 @@ $ sudo dnf install ansible         (for Fedora, i3 will be installed during ansi
 ### 1. IF YOU ARE USING UBUNTU
 (refer docs/ubuntu-specific.md)
 
-#### 2. Clone my repo and run ansible
+### 2. Clone my repo and run ansible
 ```
 $ git clone https://github.com/nxzthelinuxguy/myi3-setup
 $ cd myi3-setup/
