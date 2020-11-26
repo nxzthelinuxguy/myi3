@@ -13,6 +13,6 @@
 ```
 $ vi $HOME/.zshrc
 
-append the following to the plugins:
+#### append the following to the plugins:
 plugins=(zsh-autosuggestions)
 ```
