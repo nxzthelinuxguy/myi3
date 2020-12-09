@@ -46,6 +46,12 @@
     path: "{{ userhome }}/.config/rofi"
     state: directory
 
+- name: i3 Configuration - Create conky directory
+  become_user: "{{ username }}"
+  file:
+    path: "{{ userhome }}/.conky"
+    state: directory
+
 - name: i3 Configuration - Copy "{{ userhome }}/.config/rofi/config"
   become_user: "{{ username }}"
   copy:
@@ -57,6 +63,13 @@
   copy:
     src: files/i3block-scripts/
     dest: "{{ userhome }}/opt/scripts/myi3blocks/"
+    mode: "0755"
+
+- name: i3 Configuration - Copy "{{ userhome }}/.conky" scripts
+  become_user: "{{ username }}"
+  copy:
+    src: files/conky/
+    dest: "{{ userhome }}/.conky/"
     mode: "0755"
 
 - name: i3 Configuration - Copy i3exit script
