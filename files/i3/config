@@ -3,20 +3,20 @@
 set $mod Mod4
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
+new_window pixel 2
 new_float normal
 
 # Hide borders
 hide_edge_borders none
 
 # Window title font
-font xft:URWGothic-Book 11
+font xft:Monospace 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # Focus follows mouse
-focus_follows_mouse no
+focus_follows_mouse yes
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -25,18 +25,21 @@ bindsym $mod+d layout toggle split
 # Set screen resolution to 1920x1080
 #exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080
 
+# Prompt for password for root privileges
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
 # Enable touchpad natural scrolling
 #exec_always --no-startup-id xinput set-prop "DELL07E6:00 06CB:76AF Touchpad" "libinput Natural Scrolling Enabled" 1
 
 bindsym $mod+Return exec gnome-terminal
 bindsym $mod+b exec google-chrome-stable
+bindsym $mod+Shift+s exec "dmenu_run -i" 
 bindsym $mod+Shift+f exec nautilus 
 
 bindsym $mod+space --release exec "rofi -combi-modi drun,window,ssh -show combi -modi combi"
 bindsym $mod+q kill
 
 bindsym $mod+Ctrl+p exec pavucontrol
-bindsym $mod+Ctrl+b exec gnome-terminal -e 'bmenu'
 bindsym $mod+Print --release exec --no-startup-id flameshot gui
 
 ### CAPSLOCK STATUS
@@ -51,16 +54,17 @@ bindsym XF86AudioMute exec "amixer -q -D pulse sset Master toggle && pkill -RTMI
 exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id blueman-applet
-exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id volumeicon
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b &
+exec --no-startup-id nm-applet &
+exec --no-startup-id xfce4-power-manager &
+exec --no-startup-id blueman-applet &
+exec --no-startup-id xautolock -time 10 -locker blurlock &
+exec --no-startup-id volumeicon &
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
+exec_always --no-startup-id ff-theme-util 
+exec_always --no-startup-id fix_xcursor 
+exec_always --no-startup-id conky -c ~/.conky/conkyrc_orange
 
 
 ######### BRIGHTNESS ##############
@@ -92,9 +96,9 @@ bindsym $mod+Ctrl+Left workspace prev
 #     set $ws2 2:
 set $ws1 "1"
 set $ws2 "2"
-set $ws3 "3|"
+set $ws3 "3"
 set $ws4 "4"
-set $ws5 "5|"
+set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8🎜"
@@ -147,7 +151,7 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="SimpleScreenRecorder"] floating enable border normal
-for_window [class="MPlayer"] floating enable
+for_window [class="Org.gnome.Nautilus"] floating enable border pixel 2
 for_window [class="Spotify"] floating enable 
 
 # switch to workspace with urgent window automatically
@@ -266,7 +270,7 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 6
+gaps inner 7
 gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
@@ -275,7 +279,7 @@ gaps outer 0
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+#smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
