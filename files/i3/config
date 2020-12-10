@@ -3,14 +3,14 @@
 set $mod Mod4
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 2
+new_window pixel 1
 new_float normal
 
 # Hide borders
 hide_edge_borders none
 
 # Window title font
-font xft:Monospace 11
+font xft: System San Francisco Display 9
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -33,8 +33,8 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 
 bindsym $mod+Return exec gnome-terminal
 bindsym $mod+b exec google-chrome-stable
-bindsym $mod+Shift+s exec "dmenu_run -i" 
-bindsym $mod+Shift+f exec nautilus 
+bindsym $mod+Shift+s exec "dmenu_run" 
+bindsym $mod+Shift+f exec pcmanfm
 
 bindsym $mod+space --release exec "rofi -combi-modi drun,window,ssh -show combi -modi combi"
 bindsym $mod+q kill
@@ -125,7 +125,8 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
 assign [class="Google-chrome"] $ws2
-assign [class="Org.gnome.Nautilus"] $ws4
+assign [class="Pcmanfm"] $ws4
+assign [class="vlc"] $ws7
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
@@ -151,7 +152,7 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="SimpleScreenRecorder"] floating enable border normal
-for_window [class="Org.gnome.Nautilus"] floating enable border pixel 2
+for_window [class="Pcmanfm"] floating enable border pixel 2
 for_window [class="Spotify"] floating enable 
 
 # switch to workspace with urgent window automatically
@@ -228,7 +229,7 @@ set_from_resource $term_color15    color15
 bar {
 	i3bar_command i3bar
 	status_command i3blocks
-	position bottom
+	position top
 
       # please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 	# tray_output primary
@@ -239,12 +240,12 @@ bar {
 	strip_workspace_numbers yes
 
     colors {
-        background #222D31
-        statusline #F9FAF9
-        separator  #454947
+        background #2B303B
+        statusline #c563c1
+        separator  #784576
 
         #                  border  backgr  text
-        focused_workspace  #F9FAF9 #16a085 #292F34
+        focused_workspace  #784576 #c563c1 #292F34
         active_workspace   #595B5B #353836 #FDF6E3
         inactive_workspace #595B5B #222D31 #EEE8D5
         binding_mode       #16a085 #2C2C2C #F9FAF9
@@ -257,7 +258,7 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
+  client.focused          #556064 #c563c1 #80FFF9 #ffffff
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
@@ -271,7 +272,7 @@ bindsym $mod+m bar mode toggle
 
 # Set inner/outer gaps
 gaps inner 7
-gaps outer 0
+gaps outer 5
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -283,7 +284,7 @@ gaps outer 0
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+#smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
