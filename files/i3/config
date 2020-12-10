@@ -127,7 +127,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 assign [class="Brave-browser"] $ws2
 assign [class="Pcmanfm"] $ws4
 assign [class="vlc"] $ws7
-# assign [class="Skype"] $ws5
+assign [class="Spotify"] $ws8
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -138,6 +138,7 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="SimpleScreenRecorder"] floating enable border normal
 #for_window [class="Pcmanfm"] floating enable border pixel 2
+for_window [class="Spotify"] floating enable border pixel 1
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
