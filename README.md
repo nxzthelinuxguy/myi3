@@ -4,12 +4,12 @@
 
 ### How to run it
 
-#### Install Pre-reqs
+### Install Pre-reqs
 
 #### Step 1. UBUNTU USERS
 (refer docs/ubuntu-specific.md)
 
-### Step 2. Clone my repo and run ansible
+#### Step 2. Clone my repo and run ansible
 ```
 $ git clone https://github.com/nxzthelinuxguy/myi3-setup.git
 $ cd myi3-setup/
