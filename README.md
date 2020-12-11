@@ -1,16 +1,15 @@
 # myi3-setup
-Configure my Laptop
 
-## How to run it
+## Tested and optimized for ubuntu 20.04 and lower
+
+### How to run it
+
 #### Install Pre-reqs
-```
-$ sudo pacman -S ansible i3        (for Arch Linux)
-$ sudo dnf install ansible         (for Fedora, i3 will be installed during ansible run)
-```
-### 1. IF YOU ARE USING UBUNTU
+
+#### Step 1. UBUNTU USERS
 (refer docs/ubuntu-specific.md)
 
-### 2. Clone my repo and run ansible
+### Step 2. Clone my repo and run ansible
 ```
 $ git clone https://github.com/nxzthelinuxguy/myi3-setup.git
 $ cd myi3-setup/
