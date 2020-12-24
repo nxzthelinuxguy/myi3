@@ -83,3 +83,16 @@
     src: files/blurlock
     dest: /usr/bin/blurlock
     mode: '0777'
+
+- name: i3 Configuration - Create conky directory
+  become_user: "{{ username }}"
+  file:
+    path: "{{ userhome }}/.config/polybar"
+    state: directory
+
+- name: i3 Configuration - Copy "{{ userhome }}/.conky" scripts
+  become_user: "{{ username }}"
+  copy:
+    src: files/config/polybar
+    dest: "{{ userhome }}/.config/"
+    mode: "0755"
