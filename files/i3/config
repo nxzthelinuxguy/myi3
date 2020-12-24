@@ -32,9 +32,10 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 #exec_always --no-startup-id xinput set-prop "DELL07E6:00 06CB:76AF Touchpad" "libinput Natural Scrolling Enabled" 1
 
 bindsym $mod+Return exec gnome-terminal
-bindsym $mod+b exec brave-browser
-bindsym $mod+Shift+s exec "dmenu_run" 
+bindsym $mod+b exec /snap/bin/chromium
+bindsym $mod+Shift+e exec gedit
 bindsym $mod+Shift+f exec pcmanfm
+bindsym $mod+Shift+h exec "gnome-terminal -e /usr/bin/htop"
 
 bindsym $mod+space --release exec "rofi -combi-modi drun,window,ssh -show combi -modi combi"
 bindsym $mod+q kill
@@ -54,7 +55,8 @@ bindsym XF86AudioMute exec "amixer -q -D pulse sset Master toggle && pkill -RTMI
 exec --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b &
+exec --no-startup-id nitrogen --restore; sleep 1   
+exec --no-startup-id compton -b
 exec --no-startup-id nm-applet &
 exec --no-startup-id xfce4-power-manager &
 exec --no-startup-id blueman-applet &
@@ -64,8 +66,8 @@ exec --no-startup-id volumeicon &
 #exec --no-startup-id pa-applet
 exec_always --no-startup-id ff-theme-util 
 exec_always --no-startup-id fix_xcursor 
-exec_always --no-startup-id conky -c ~/.conky/conkyrc_orange
-
+#exec_always --no-startup-id conky -c ~/.config/conky/conkyrc_orange
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 ######### BRIGHTNESS ##############
 #bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
@@ -94,14 +96,14 @@ bindsym $mod+Ctrl+Left workspace prev
 # Workspace names
 # Eg: set $ws1 1:mail
 #     set $ws2 2:
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8🎜"
+set $ws1 "1:dev "
+set $ws2 "2:www "
+set $ws3 "3:usr "
+set $ws4 "4:docs "
+set $ws5 "5:virt "
+set $ws6 "6:mail "
+set $ws7 "7:video "
+set $ws8 "8:chat "
 
 # Switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -126,8 +128,15 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # Open applications on specific workspaces
 assign [class="Brave-browser"] $ws2
 assign [class="Pcmanfm"] $ws4
+assign [class="Vmware"] $ws5
+assign [class="LibreOffice Draw"] $ws6
 assign [class="vlc"] $ws7
 assign [class="Spotify"] $ws8
+assign [class="BlueMail"] $ws6
+assign [class="Skype"] $ws7
+assign [class="zoom"] $ws7
+assign [class="Slack"] $ws6
+assign [class="Chromium"] $ws2
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -139,6 +148,13 @@ for_window [class="Simple-scan"] floating enable border normal
 for_window [class="SimpleScreenRecorder"] floating enable border normal
 #for_window [class="Pcmanfm"] floating enable border pixel 2
 for_window [class="Spotify"] floating enable border pixel 1
+for_window [class="Shotcut"] floating enable border pixel 1
+for_window [class="LibreOffice Draw"] floating enable border pixel 1
+for_window [class="Slack"] floating enable border pixel 1
+for_window [class="Skype"] floating enable border pixel 1
+for_window [class="zoom"] floating enable border pixel 1
+for_window [class="BlueMail"] floating enable border pixel 1
+for_window [class="Transmission"] floating enable border pixel 1
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -211,39 +227,39 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Start i3bar 
-bar {
-	i3bar_command i3bar
-	status_command i3blocks
-	position top
-
-      # please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-	# tray_output primary
-	# tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-	strip_workspace_numbers yes
-
-    colors {
-        background #2B303B
-        statusline #c563c1
-        separator  #784576
-
-        #                  border  backgr  text
-        focused_workspace  #784576 #b454ae #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
-}
-
+#bar {
+#	i3bar_command i3bar
+#	status_command i3blocks
+#	position top
+#
+#      # please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+#	# tray_output primary
+#	# tray_output eDP1
+#
+#	bindsym button4 nop
+#	bindsym button5 nop
+#	strip_workspace_numbers yes
+#
+#    colors {
+#        background #2B303B
+#        statusline #a65dab
+#        separator  #784576
+#
+#        #                  border  backgr  text
+#        focused_workspace  #a65fac #b454ae #292F34
+#        active_workspace   #595B5B #353836 #FDF6E3
+#        inactive_workspace #595B5B #222D31 #EEE8D5
+#        binding_mode       #16a085 #2C2C2C #F9FAF9
+#        urgent_workspace   #16a085 #FDF6E3 #E5201D
+#    }
+#}
+#
 # hide/unhide i3bar
-bindsym $mod+m bar mode toggle
+#bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #c563c1 #80FFF9 #ffffff
+  client.focused          #556064 #b454ae #80FFF9 #ffffff
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
@@ -256,8 +272,8 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 7
-gaps outer 5
+gaps inner 10
+gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
