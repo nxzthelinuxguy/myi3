@@ -19,7 +19,7 @@
     name: [
         'binutils',
         'policykit-1-gnome',
-        'conky-all',
+        'polybar',
     ]
     state: present
 
