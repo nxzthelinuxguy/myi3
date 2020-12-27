@@ -20,6 +20,8 @@
         'binutils',
         'policykit-1-gnome',
         'polybar',
+        'volumeicon-alsa',
+        'blueman',
     ]
     state: present
 
