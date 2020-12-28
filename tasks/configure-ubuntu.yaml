@@ -11,6 +11,7 @@
         'compton',
         'fonts-font-awesome',
         'fonts-noto',
+        'thunar',
     ]
     state: present
 
